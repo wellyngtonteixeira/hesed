@@ -1,0 +1,28 @@
+<!--
+  Generated template for the MembrosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Membros</ion-title>
+    <ion-buttons end>
+    	<button ion-button navPush="AddMembroPage">
+    		<ion-icon name="add"></ion-icon>
+    	</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+      <ion-list-header>Cadastrados</ion-list-header>
+      <ion-item *ngFor="let membro of membrosList$ | async">
+        {{membro.nome}}
+      </ion-item>
+    </ion-list>
+</ion-content>

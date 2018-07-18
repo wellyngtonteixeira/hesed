@@ -1,0 +1,52 @@
+<!--
+  Generated template for the AddMembroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Adicionando Membro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-item >
+		<ion-label>Tipo de Membro</ion-label>
+		<ion-select [(ngModel)]="membro.tipo">
+			<ion-option value="membro">Membro</ion-option>
+			<ion-option value="servo">Servo</ion-option>
+		</ion-select>
+	</ion-item>
+	<ion-item >
+		<ion-label>Sexo</ion-label>
+		<ion-select [(ngModel)]="membro.sexo">
+			<ion-option value="masc">Masculino</ion-option>
+			<ion-option value="fem">Feminino</ion-option>
+		</ion-select>
+	</ion-item>
+	<ion-item>
+		<ion-input [(ngModel)]="membro.nome" placeholder="Nome Completo"></ion-input>
+	</ion-item>
+
+	<ion-item>
+		<ion-input [(ngModel)]="membro.telefone" placeholder="Telefone" type="tel"></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-input [(ngModel)]="membro.email" placeholder="Email" type="email"></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label>Data de Nascimento</ion-label>
+		<ion-datetime [(ngModel)]="membro.dtnasc" displayFormat="DD/MM/YYYY"></ion-datetime>
+	</ion-item>
+	<ion-item>
+		<ion-label>Ingressou no grupo em</ion-label>
+		<ion-datetime [(ngModel)]="membro.dtingressou" displayFormat="DD/MM/YYYY"></ion-datetime>
+	</ion-item>
+	<button ion-button block clear (click)="addMembro(membro)">Adicionar</button>
+
+</ion-content>
