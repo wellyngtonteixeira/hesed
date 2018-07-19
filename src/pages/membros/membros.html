@@ -21,7 +21,8 @@
 <ion-content padding>
     <ion-list>
       <ion-list-header>Cadastrados</ion-list-header>
-      <ion-item *ngFor="let membro of membrosList$ | async">
+      <ion-item *ngFor="let membro of membrosList$ | async" detail-push 
+      navPush="EditMembroPage" [navParams]="{membro: membro}">
         {{membro.nome}}
       </ion-item>
     </ion-list>

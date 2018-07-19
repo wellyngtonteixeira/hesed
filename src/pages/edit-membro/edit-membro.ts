@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Membro } from './../../models/membro/membro.model';
+import { MembroListService } from './../../services/membro-list/membro-list.service';
 
 /**
  * Generated class for the EditMembroPage page.
@@ -15,11 +17,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EditMembroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	membro: Membro;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembroListService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditMembroPage');
+  ionViewWillLoad() {
+    this.membro = this.navParams.get('membro');
+  }
+
+  salvarMembro(membro: Membro){
+  		this.membros.editMembro(membro)
+  		.then(() => {
+  			this.navCtrl.setRoot('MembrosPage');
+  		});
   }
 
 }

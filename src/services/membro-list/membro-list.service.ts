@@ -17,5 +17,9 @@ export class MembroListService{
 		return this.membroListRef.push(membro);
 	}
 
+	editMembro(membro: Membro){
+		return this.membroListRef.update(membro.key, membro);
+	}
+
 
 }
