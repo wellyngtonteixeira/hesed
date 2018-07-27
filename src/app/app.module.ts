@@ -16,6 +16,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { MembroListService } from './../services/membro-list/membro-list.service';
+import { ToastService } from './../services/toast/toast.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MembroListService } from './../services/membro-list/membro-list.service
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MembroListService
+    MembroListService,
+    ToastService,
   ]
 })
 export class AppModule {}

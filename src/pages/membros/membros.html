@@ -19,9 +19,10 @@
 
 
 <ion-content padding>
+    <ion-searchbar (ionInput)="search($event)" [(ngModel)]="searchQuery" placeholder="Pesquise membros..."></ion-searchbar>
     <ion-list>
       <ion-list-header>Cadastrados</ion-list-header>
-      <ion-item *ngFor="let membro of membrosList$ | async" detail-push 
+      <ion-item *ngFor="let membro of membrosLista" detail-push 
       navPush="EditMembroPage" [navParams]="{membro: membro}">
         {{membro.nome}}
       </ion-item>
