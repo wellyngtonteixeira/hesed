@@ -36,4 +36,12 @@ export class EditMembroPage {
   		});
   }
 
+  removeMembro(membro: Membro){
+    this.membros.removeMembro(membro)
+      .then(() => {
+        this.toast.show(`${membro.nome} excluído!`);
+        this.navCtrl.setRoot('MembrosPage');
+      })
+  }
+
 }

@@ -48,5 +48,6 @@
 		<ion-datetime [(ngModel)]="membro.dtingressou" displayFormat="DD/MM/YYYY"></ion-datetime>
 	</ion-item>
 	<button ion-button block clear (click)="salvarMembro(membro)">Salvar</button>
+	<button ion-button block clear color="danger" (click)="removeMembro(membro)">Excluir</button>
 
 </ion-content>

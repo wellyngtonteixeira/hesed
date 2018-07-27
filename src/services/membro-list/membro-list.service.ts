@@ -16,7 +16,7 @@ export class MembroListService{
 
 	constructor(private db: AngularFireDatabase){}
 
-	getMembros(inicio: BehaviorSubject<string>): Observable<Membro> {
+	getMembros(inicio: BehaviorSubject<string>): Observable<any> {
 		return inicio.switchMap(iniText => {
 			const fimText = iniText + '\uf8ff';
 			return this.db.list<Membro>('/membro-list', ref =>
@@ -43,6 +43,10 @@ export class MembroListService{
 
 	editMembro(membro: Membro){
 		return this.membroListRef.update(membro.key, membro);
+	}
+
+	removeMembro(membro: Membro){
+		return this.membroListRef.remove(membro.key);
 	}
 
 
