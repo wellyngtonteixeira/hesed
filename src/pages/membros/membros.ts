@@ -5,6 +5,7 @@ import { MembroListService } from './../../services/membro-list/membro-list.serv
 import { Membro } from './../../models/membro/membro.model';
 import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
+import { Push, PushObject, PushOptions} from "@ionic-native/push";
 import { AngularFireList } from 'angularfire2/database';
 
 /**
@@ -27,7 +28,7 @@ export class MembrosPage implements OnInit{
   ultTeclPress: number = 0;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembroListService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembroListService, private push: Push) {
     
   }
 

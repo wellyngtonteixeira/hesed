@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { MembrosPage } from "../pages/membros/membros";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,23 +19,36 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MembroListService } from './../services/membro-list/membro-list.service';
 import { ToastService } from './../services/toast/toast.service';
 
+import { Push } from '@ionic-native/push';
+import {GooglePlus} from "@ionic-native/google-plus";
+import {LoginPage} from "../pages/login/login";
+import {GoogleLoginComponent} from "../components/google-login/google-login";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+    MembrosPage,
+      LoginPage,
+    GoogleLoginComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+      AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [ 
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
+      MembrosPage,
+    GoogleLoginComponent,
+      LoginPage
   ],
   providers: [
     StatusBar,
@@ -42,6 +56,8 @@ import { ToastService } from './../services/toast/toast.service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MembroListService,
     ToastService,
+    Push,
+      GooglePlus
   ]
 })
 export class AppModule {}

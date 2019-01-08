@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "343522721815",
+    "firebase_url": "https://hesed-e0cbf.firebaseio.com",
+    "project_id": "hesed-e0cbf",
+    "storage_bucket": "hesed-e0cbf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343522721815:android:42ce5f9e04262566",
+        "android_client_info": {
+          "package_name": "com.hesed.membros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "343522721815-kh8ogg3bgi6sqqnmva1vq2mdcb1eh483.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4tTHv7ukRZ6l6Jr9XoXxd5MBuw88atRE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
