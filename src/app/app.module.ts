@@ -16,14 +16,15 @@ import { FIREBASE_CREDENTIALS } from './firebase.credentials';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { MembroListService } from './../services/membro-list/membro-list.service';
-import { ToastService } from './../services/toast/toast.service';
+import { MembrosService } from '../services/membros/membros.service';
+import { ToastService } from '../services/toast/toast.service';
 
 import { Push } from '@ionic-native/push';
 import {GooglePlus} from "@ionic-native/google-plus";
 import {LoginPage} from "../pages/login/login";
 import {GoogleLoginComponent} from "../components/google-login/google-login";
 import {AngularFireAuthModule} from "@angular/fire/auth";
+import { AuthService } from '../services/auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import {AngularFireAuthModule} from "@angular/fire/auth";
     HomePage,
     ListPage,
     MembrosPage,
-      LoginPage,
+    LoginPage,
     GoogleLoginComponent
   ],
   imports: [
@@ -39,25 +40,26 @@ import {AngularFireAuthModule} from "@angular/fire/auth";
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
     AngularFireDatabaseModule,
-      AngularFireAuthModule
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [ 
     MyApp,
     HomePage,
     ListPage,
-      MembrosPage,
+    MembrosPage,
     GoogleLoginComponent,
-      LoginPage
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MembroListService,
+    MembrosService,
     ToastService,
     Push,
-      GooglePlus
+    GooglePlus,
+    AuthService
   ]
 })
 export class AppModule {}

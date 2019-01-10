@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-//import { FirebaseListObservable } from 'angularfire2/database-deprecated';
-//import { FirebaseListObservable } from 'angularfire2/database-deprecated';
-import { Membro } from './../../models/membro/membro.model';
+import { Membro } from '../../models/membro/membro.model';
 import { Observable } from "rxjs/Observable";
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import * as _ from 'lodash'
+import {AuthService} from "../auth/auth.service";
 
 @Injectable()
-export class MembroListService{
+export class MembrosService{
 	
 	private membroListRef = this.db.list<Membro>('membros');
 	rolesMembro: Array<string>;
 
-	constructor(private db: AngularFireDatabase){}
+	constructor(private auth: AuthService, private db: AngularFireDatabase){
+		this.auth.membro.map(membro =>{
+			return this.rolesMembro = _.keys(_.get(membro, 'roles'))
+		})
+			.subscribe()
+	}
 
 	getMembros(inicio: BehaviorSubject<string>): Observable<any> {
 		return inicio.switchMap(iniText => {

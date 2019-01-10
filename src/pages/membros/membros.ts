@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { MembroListService } from './../../services/membro-list/membro-list.service';
+import { MembrosService} from '../../services/membros/membros.service';
 import { Membro } from './../../models/membro/membro.model';
 import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
@@ -28,7 +28,7 @@ export class MembrosPage implements OnInit{
   ultTeclPress: number = 0;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembroListService, private push: Push) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembrosService, private push: Push) {
     
   }
 

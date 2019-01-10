@@ -1,11 +1,11 @@
 <!-- Generated template for the GoogleLoginComponent component -->
-<div *ngIf="(user | async) || {} as user">
-  <button ion-button *ngIf="!user.uid"
+<div *ngIf="(auth.membro | async) || {} as membro">
+  <button ion-button *ngIf="!membro.email"
           (tap)="googleLogin()">
     Login com Google
   </button>
-  <div *ngIf="user.uid">
-    Você conseguiu se logar e o seu UID é: {{user.uid}}
+  <div *ngIf="membro.email">
+    Você conseguiu se logar e o seu UID é: {{membro.email}}
     <button ion-button (tap)="signOut()">
       Sair
     </button>

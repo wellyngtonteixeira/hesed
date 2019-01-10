@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Membro } from './../../models/membro/membro.model';
-import { MembroListService } from './../../services/membro-list/membro-list.service';
-import { ToastService } from './../../services/toast/toast.service';
+import { MembrosService } from '../../services/membros/membros.service';
+import { ToastService } from '../../services/toast/toast.service';
 
 /**
  * Generated class for the EditMembroPage page.
@@ -20,7 +20,7 @@ export class EditMembroPage {
 
 	membro: Membro;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembroListService,
+  constructor(public nav: NavController, public navParams: NavParams, private membros: MembrosService,
     private toast: ToastService) {
   }
 
@@ -32,7 +32,7 @@ export class EditMembroPage {
   		this.membros.editMembro(membro)
   		.then(() => {
   			this.toast.show(`${membro.nome} Editado!`);
-        this.navCtrl.setRoot('MembrosPage');
+        this.nav.setRoot('MembrosPage');
   		});
   }
 
@@ -40,7 +40,7 @@ export class EditMembroPage {
     this.membros.removeMembro(membro)
       .then(() => {
         this.toast.show(`${membro.nome} excluído!`);
-        this.navCtrl.setRoot('MembrosPage');
+        this.nav.setRoot('MembrosPage');
       })
   }
 
