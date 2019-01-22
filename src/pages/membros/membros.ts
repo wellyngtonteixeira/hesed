@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 import { Push, PushObject, PushOptions} from "@ionic-native/push";
 import { AngularFireList } from 'angularfire2/database';
+import {AngularFireAuth} from "@angular/fire/auth";
+import {AuthService} from "../../services/auth/auth.service";
 
 /**
  * Generated class for the MembrosPage page.
@@ -28,8 +30,9 @@ export class MembrosPage implements OnInit{
   ultTeclPress: number = 0;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembrosService, private push: Push) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembrosService,
+              public auth: AuthService) {
+
   }
 
   ngOnInit(){

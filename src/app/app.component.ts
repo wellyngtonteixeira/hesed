@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import {Nav, NavParams, Platform} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { MembrosPage } from "../pages/membros/membros";
-import {LoginPage} from "../pages/login/login";
+import { LoginPage } from "../pages/login/login";
+import {AngularFireAuth} from "@angular/fire/auth";
+import {AuthService} from "../services/auth/auth.service";
 
 @Component({
   templateUrl: 'app.html'
@@ -14,30 +14,36 @@ import {LoginPage} from "../pages/login/login";
 export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen
+      , public auth: AuthService) {
+
+    if(this.auth.membro.value != null){
+      this.rootPage = "MembrosPage";
+      this.navCtrl.push("MembrosPage")
+    }else{
+      this.rootPage = "LoginPage"
+    }
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Membros', component: MembrosPage},
-      { title: 'Login', component: LoginPage}
+      { title: 'Membros', component: MembrosPage}
     ];
 
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+        this.platform.ready().then(() => {
+          // Okay, so the platform is ready and our plugins are available.
+          // Here you can do any higher level native things you might need.
+          this.statusBar.styleDefault();
+          this.splashScreen.hide();
+        });
   }
 
   openPage(page) {

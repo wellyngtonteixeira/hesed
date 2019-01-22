@@ -3,8 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { MembrosPage } from "../pages/membros/membros";
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -22,33 +20,30 @@ import { ToastService } from '../services/toast/toast.service';
 import { Push } from '@ionic-native/push';
 import {GooglePlus} from "@ionic-native/google-plus";
 import {LoginPage} from "../pages/login/login";
-import {GoogleLoginComponent} from "../components/google-login/google-login";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import { AuthService } from '../services/auth/auth.service';
+import {MembrosPageModule} from "../pages/membros/membros.module";
+import {LoginPageModule} from "../pages/login/login.module";
+import {ComponentsModule} from "../components/components.module";
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    ListPage,
-    MembrosPage,
-    LoginPage,
-    GoogleLoginComponent
+    MyApp
   ],
   imports: [
     BrowserModule,
+    ComponentsModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+      MembrosPageModule,
+      LoginPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [ 
     MyApp,
-    HomePage,
-    ListPage,
     MembrosPage,
-    GoogleLoginComponent,
     LoginPage
   ],
   providers: [
@@ -59,7 +54,9 @@ import { AuthService } from '../services/auth/auth.service';
     ToastService,
     Push,
     GooglePlus,
-    AuthService
+    AuthService,
+      MembrosPage,
+      LoginPage
   ]
 })
 export class AppModule {}

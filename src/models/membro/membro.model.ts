@@ -18,6 +18,7 @@ export interface Roles {
 export class Membro{
 	key?: string;
 	email: string;
+	foto: string;
 	sexo: string;
 	nome: string;
 	telefone: number;
@@ -26,7 +27,10 @@ export class Membro{
 	roles: Roles;
 
 	constructor(authData){
+		this.key = authData.uid;
 		this.email = authData.email;
-		this.roles = { servo: false};
+		this.nome = authData.displayName;
+		this.foto = authData.photoURL;
+		this.roles = {servo: true}
 	}
 }

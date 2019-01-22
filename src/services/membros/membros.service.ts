@@ -12,8 +12,9 @@ import {AuthService} from "../auth/auth.service";
 
 @Injectable()
 export class MembrosService{
-	
-	private membroListRef = this.db.list<Membro>('membros');
+
+    membro: BehaviorSubject<Membro> = new BehaviorSubject(null);
+    private membroListRef = this.db.list<Membro>('membros');
 	rolesMembro: Array<string>;
 
 	constructor(private auth: AuthService, private db: AngularFireDatabase){
@@ -42,6 +43,12 @@ export class MembrosService{
 				});
 			});
 		});
+	}
+
+	getMembro(key: string){
+		const membroPath =  `membros/${key}`;
+		const membro = this.db.object(membroPath)
+		return membro;
 	}
 
 	addMembro(membro: Membro){
