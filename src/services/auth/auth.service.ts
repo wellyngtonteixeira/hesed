@@ -21,6 +21,7 @@ import {AngularFireDatabase} from "@angular/fire/database";
 export class AuthService {
 
     membro: BehaviorSubject<Membro> = new BehaviorSubject(null)
+    autenticado: boolean = false;
 
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private gplus: GooglePlus) {
@@ -45,6 +46,7 @@ export class AuthService {
         .subscribe(membro => {
           this.membro.next(membro)
         });
+
     //console.log('Hello AuthService Provider');
   }
 
@@ -138,5 +140,10 @@ private primeiro_acesso(user){
   googleSignOut(){
       this.gplus.logout()
   }
+
+  setAutentica(valor){
+        this.autenticado = valor;
+  }
+
 
 }

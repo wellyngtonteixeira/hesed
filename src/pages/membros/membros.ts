@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 import { MembrosService} from '../../services/membros/membros.service';
-import { Membro } from './../../models/membro/membro.model';
 import 'rxjs/add/operator/map';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject'
-import { Push, PushObject, PushOptions} from "@ionic-native/push";
-import { AngularFireList } from 'angularfire2/database';
-import {AngularFireAuth} from "@angular/fire/auth";
 import {AuthService} from "../../services/auth/auth.service";
 
 /**
@@ -33,44 +28,16 @@ export class MembrosPage implements OnInit{
   constructor(public navCtrl: NavController, public navParams: NavParams, private membros: MembrosService,
               public auth: AuthService) {
 
+    console.log(this.auth.autenticado)
+
   }
 
   ngOnInit(){
     this.membros.getMembros(this.inicio)
     .subscribe(membros => this.membrosLista = membros);
   }
-/*
-  getAllMembros(){
-    this.membrosRef.query.on('value', membrosLista => {
-        let membros = [];
-        membrosLista.forEach( membro => {
-          membros.push(membro.val());
-          return false;
-        });
-        this.membrosLista = membros;
-        this.allMembrosLista = membros;
-    });
-    this.membrosLista = this.allMembrosLista;
-  }
-
-  inicializaMembrosLista(){
-    //this.getAllMembros();
-    this.membrosLista = this.allMembrosLista;
-  }
-
-  getMembros(ev: any){
-    this.inicializaMembrosLista();
-    const val = ev.target.value;
-
-    if(val && val.trim() != ''){
-      this.membrosLista = this.membrosLista.filter((m) => {
-        return (m.nome.toLowerCase().indexOf(val.toLowerCase()) > -1)
-      });
-    }
-  }*/
 
   search($event) {
-      //this.ngOnInit();
       let q = $event.target.value;
       
       if(q && q.trim() != ''){
@@ -85,16 +52,18 @@ export class MembrosPage implements OnInit{
 
   ionViewWillLoad() {
     console.log('ionViewWillLoad MembrosPage');
-    /*this.membrosRef = this.membros.getMembroList();
-    this.membrosRef.query.on('value', membrosLista => {
-        let membros = [];
-        membrosLista.forEach( membro => {
-          membros.push(membro.val());
-          return false;
-        });
-        this.membrosLista = membros;
-        this.allMembrosLista = membros;
-    });*/
+      if(this.auth.membro.value == null){
+          console.log("Fez logout")
+      }
+  }
+
+
+  ionViewCanEnter(): boolean {
+      if(this.auth.autenticado){
+          return true
+      }else{
+          return false
+      }
   }
 
 }

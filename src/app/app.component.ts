@@ -14,19 +14,12 @@ import {AuthService} from "../services/auth/auth.service";
 export class MyApp {
   @ViewChild(Nav) navCtrl: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage;
 
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen
       , public auth: AuthService) {
-
-    if(this.auth.membro.value != null){
-      this.rootPage = "MembrosPage";
-      this.navCtrl.push("MembrosPage")
-    }else{
-      this.rootPage = "LoginPage"
-    }
 
     this.initializeApp();
 
@@ -43,6 +36,12 @@ export class MyApp {
           // Here you can do any higher level native things you might need.
           this.statusBar.styleDefault();
           this.splashScreen.hide();
+          if(this.auth.autenticado){
+            this.rootPage = "MembrosPage";
+            //this.navCtrl.push("MembrosPage")
+          }else{
+            this.rootPage = "LoginPage"
+          }
         });
   }
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from "ionic-angular";
+import {Platform, App, MenuController} from "ionic-angular";
 import {AuthService} from "../../services/auth/auth.service";
 
 
@@ -16,13 +16,22 @@ import {AuthService} from "../../services/auth/auth.service";
 })
 export class GoogleLoginComponent {
 
-  constructor(private auth: AuthService, private platform: Platform) {}
+  constructor(private auth: AuthService, private platform: Platform, public nav: App
+  , public menu: MenuController) {
+
+  }
 
 googleLogin(){
     if(this.platform.is('cordova')){
-      this.auth.nativeGoogleLogin();
+      this.auth.nativeGoogleLogin()
+          .then(() => {this.auth.setAutentica(true)
+              this.nav.getActiveNav().setRoot("MembrosPage")
+          });
     }else{
-      this.auth.webGoogleLogin();
+      this.auth.webGoogleLogin()
+          .then(() => {this.auth.setAutentica(true)
+              this.nav.getActiveNav().setRoot("MembrosPage")
+          });
     }
 }
 
@@ -31,6 +40,12 @@ signOut(){
     if(this.platform.is('cordova')){
         this.auth.googleSignOut();
     }
+    this.auth.setAutentica(false)
+    this.nav.getActiveNav().setRoot("LoginPage")
+        .then(value => {
+            this.menu.toggle();
+        })
+    //this.nav.getActiveNav().;
 }
 
 }
