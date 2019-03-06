@@ -23,29 +23,26 @@ export class GoogleLoginComponent {
 
 googleLogin(){
     if(this.platform.is('cordova')){
-      this.auth.nativeGoogleLogin()
-          .then(() => {this.auth.setAutentica(true)
+      this.auth.GoogleAuth()
+          .then(() => {
               this.nav.getActiveNav().setRoot("MembrosPage")
           });
     }else{
-      this.auth.webGoogleLogin()
-          .then(() => {this.auth.setAutentica(true)
+      this.auth.GoogleAuth()
+          .then(() => {
               this.nav.getActiveNav().setRoot("MembrosPage")
           });
     }
 }
 
-signOut(){
-    this.auth.signOut();
-    if(this.platform.is('cordova')){
-        this.auth.googleSignOut();
-    }
-    this.auth.setAutentica(false)
-    this.nav.getActiveNav().setRoot("LoginPage")
-        .then(value => {
-            this.menu.toggle();
-        })
-    //this.nav.getActiveNav().;
+async signOut(){
+    this.auth.logout().then(() => {
+        this.auth.autenticado = false;
+        this.nav.getActiveNav().setRoot("LoginPage")
+            .then(value => {
+                this.menu.toggle();
+            })
+    });
 }
 
 }
